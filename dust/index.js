@@ -1,14 +1,40 @@
+require('raptor-ecma/es6');
 var raptorDust = require('raptor-dust');
 
-exports.registerHelpers = function(dust) {    
+var viewEngine = 'view-engine';
+
+try {
+    viewEngine = require.resolve(viewEngine);
+} catch(e) {
+    viewEngine = null;
+}
+
+if (viewEngine) {
+    viewEngine = require(viewEngine);
+}
+
+var path = require('path');
+
+exports.registerHelpers = function(dust) {
+
+    var templateCache = {};
+
     raptorDust.registerHelpers({
         'layout-use': {
             buildInput: function(chunk, context, bodies, params, renderContext) {
                 var args = params;
                 var template = params.template;
 
-                if (!template || typeof template.render !== 'function') {
-                    throw new Error('Invalid template');
+                if (!template) {
+                    throw new Error('"template" attribute is required');
+                }
+
+                if (typeof template === 'string') {
+                    if (template.startsWith('.')) {
+                        template = path.join(path.dirname(context.templateName), template);
+                    }
+
+                    template = templateCache[template] || (templateCache[template] = viewEngine.load(template));
                 }
 
                 delete args.template;
