@@ -1,4 +1,5 @@
-require('raptor-ecma/es6');
+require('raptor-polyfill/string/startsWith');
+
 var raptorDust = require('raptor-dust');
 
 var viewEngine = 'view-engine';
