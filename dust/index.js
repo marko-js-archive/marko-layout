@@ -40,20 +40,25 @@ exports.registerHelpers = function(dust) {
 
                 delete args.template;
 
-                return {
-                    invokeBody: function(_layout) {
-                        var newContext = context.push(_layout);
-                        renderContext.renderDustBody(bodies.block, newContext);
-                    },
+                var result = {
                     '*': args,
                     template: template
                 };
+
+                if (bodies.block) {
+                    result.invokeBody = function(_layout) {
+                        var newContext = context.push(_layout);
+                        renderContext.renderDustBody(bodies.block, newContext);
+                    };
+                }
+
+                return result;
             },
             renderer: require('../use-tag')
         },
         'layout-put': {
             buildInput: function(chunk, context, bodies, params, renderContext) {
-                if (params.value == null) {
+                if (params.value == null && bodies.block) {
                     params.invokeBody = function(renderContext) {
                         renderContext.renderDustBody(bodies.block);
                     };    
@@ -65,10 +70,12 @@ exports.registerHelpers = function(dust) {
         },
         'layout-placeholder': {
             buildInput: function(chunk, context, bodies, params, renderContext) {
-                params.invokeBody = function() {
-                    renderContext.renderDustBody(bodies.block);
-                };
-
+                if (bodies.block) {
+                    params.invokeBody = function() {
+                        renderContext.renderDustBody(bodies.block);
+                    };    
+                }
+                
                 return params;
             },
             renderer: require('../placeholder-tag')
