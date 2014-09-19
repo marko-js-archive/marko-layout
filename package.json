@@ -1,14 +1,14 @@
 {
-    "name": "marko-taglib-layout",
+    "name": "marko-layout",
     "description": "Layout taglib for marko",
     "keywords": [
-        "taglib",
+        "marko-taglib",
         "marko",
         "layout"
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/raptorjs3/marko-taglib-layout.git"
+        "url": "https://github.com/raptorjs3/marko-layout.git"
     },
     "scripts": {
         "test": "node_modules/.bin/jshint *.js dust/"
