@@ -1,10 +1,10 @@
 {
     "name": "marko-taglib-layout",
-    "description": "Async taglib",
+    "description": "Layout taglib for marko",
     "keywords": [
         "taglib",
         "marko",
-        "async"
+        "layout"
     ],
     "repository": {
         "type": "git",
@@ -29,5 +29,5 @@
     "publishConfig": {
         "registry": "https://registry.npmjs.org/"
     },
-    "version": "1.0.0"
+    "version": "1.1.0"
 }
