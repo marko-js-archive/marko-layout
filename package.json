@@ -18,9 +18,9 @@
         "Patrick Steele-Idem <pnidem@gmail.com>"
     ],
     "dependencies": {
-        "raptor-util": "^1.0.0-beta",
-        "raptor-dust": "^1.0.0-beta",
-        "raptor-polyfill": "^1.0.0-beta"
+        "raptor-util": "^1.0.0",
+        "raptor-dust": "^1.0.0",
+        "raptor-polyfill": "^1.0.0"
     },
     "devDependencies": {
         "jshint": "^2.5.0"
