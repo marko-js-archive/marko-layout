@@ -1,33 +1,33 @@
 {
-  "name": "marko-layout",
-  "description": "Layout taglib for marko",
-  "keywords": [
-    "marko-taglib",
-    "marko",
-    "layout"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/raptorjs3/marko-layout.git"
-  },
-  "scripts": {
-    "test": "node_modules/.bin/jshint *.js dust/"
-  },
-  "author": "Patrick Steele-Idem <pnidem@gmail.com>",
-  "maintainers": [
-    "Patrick Steele-Idem <pnidem@gmail.com>"
-  ],
-  "dependencies": {
-    "raptor-util": "^1.0.0",
-    "raptor-dust": "^1.1.2",
-    "raptor-polyfill": "^1.0.0"
-  },
-  "devDependencies": {
-    "jshint": "^2.5.0"
-  },
-  "license": "Apache License v2.0",
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
-  },
-  "version": "1.2.1"
+    "name": "marko-layout",
+    "description": "Layout taglib for marko",
+    "keywords": [
+        "marko-taglib",
+        "marko",
+        "layout"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/raptorjs3/marko-layout.git"
+    },
+    "scripts": {
+        "test": "node_modules/.bin/jshint *.js dust/"
+    },
+    "author": "Patrick Steele-Idem <pnidem@gmail.com>",
+    "maintainers": [
+        "Patrick Steele-Idem <pnidem@gmail.com>"
+    ],
+    "dependencies": {
+        "raptor-util": "^1.0.0",
+        "raptor-dust": "^1.1.2",
+        "raptor-polyfill": "^1.0.0"
+    },
+    "devDependencies": {
+        "jshint": "^2.5.0"
+    },
+    "license": "Apache License v2.0",
+    "publishConfig": {
+        "registry": "https://registry.npmjs.org/"
+    },
+    "version": "1.2.2"
 }
