@@ -1,33 +1,21 @@
 require('raptor-polyfill/string/startsWith');
 
 var raptorDust = require('raptor-dust');
-
-var viewEngine = 'view-engine';
-
-try {
-    viewEngine = require.resolve(viewEngine);
-} catch(e) {
-    viewEngine = null;
-}
-
-if (viewEngine) {
-    viewEngine = require(viewEngine);
-}
-
 var path = require('path');
 
-exports.registerHelpers = function(dust) {
+exports.registerHelpers = function(dust, viewEngine) {
+    viewEngine = viewEngine || require('view-engine');
 
     var templateCache = {};
 
     raptorDust.registerHelpers({
         'layout-use': {
-            buildInput: function(chunk, context, bodies, params, renderContext) {
+            buildInput: function(chunk, context, bodies, params, out) {
                 var args = params;
                 var template = params.template;
 
                 if (!template) {
-                    throw new Error('"template" attribute is required');
+                    throw new Error('"template" param is required');
                 }
 
                 if (typeof template === 'string') {
@@ -48,7 +36,7 @@ exports.registerHelpers = function(dust) {
                 if (bodies.block) {
                     result.invokeBody = function(_layout) {
                         var newContext = context.push(_layout);
-                        renderContext.renderDustBody(bodies.block, newContext);
+                        out.renderDustBody(bodies.block, newContext);
                     };
                 }
 
@@ -57,25 +45,25 @@ exports.registerHelpers = function(dust) {
             renderer: require('../use-tag')
         },
         'layout-put': {
-            buildInput: function(chunk, context, bodies, params, renderContext) {
+            buildInput: function(chunk, context, bodies, params, out) {
                 if (params.value == null && bodies.block) {
-                    params.invokeBody = function(renderContext) {
-                        renderContext.renderDustBody(bodies.block);
-                    };    
+                    params.invokeBody = function(out) {
+                        out.renderDustBody(bodies.block);
+                    };
                 }
-                
+
                 return params;
             },
             renderer: require('../put-tag')
         },
         'layout-placeholder': {
-            buildInput: function(chunk, context, bodies, params, renderContext) {
+            buildInput: function(chunk, context, bodies, params, out) {
                 if (bodies.block) {
                     params.invokeBody = function() {
-                        renderContext.renderDustBody(bodies.block);
-                    };    
+                        out.renderDustBody(bodies.block);
+                    };
                 }
-                
+
                 return params;
             },
             renderer: require('../placeholder-tag')
