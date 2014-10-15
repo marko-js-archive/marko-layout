@@ -1,15 +1,15 @@
-module.exports = function render(input, context) {
-    var contentMap = input.content || context.getAttribute('layoutContent');
+module.exports = function render(input, out) {
+    var contentMap = input.content || out.getAttribute('layoutContent');
     var content = contentMap ? contentMap[input.name] : null;
     if (content) {
         if (content.value) {
-            context.write(content.value);
+            out.write(content.value);
         } else if (content.invokeBody) {
-            content.invokeBody(context);
+            content.invokeBody(out);
         }
     } else {
         if (input.invokeBody) {
-            input.invokeBody();
+            input.invokeBody(out);
         }
     }
 };

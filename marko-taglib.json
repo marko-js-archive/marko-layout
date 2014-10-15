@@ -25,7 +25,8 @@
             },
             "import-var": {
                 "layout": "_layout"
-            }
+            },
+            "var": "out"
         },
         "layout-placeholder": {
             "renderer": "./placeholder-tag",
