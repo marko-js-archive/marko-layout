@@ -11,7 +11,7 @@
                     "type": "string"
                 }
             },
-            "var": "_layout"
+            "body-function": "getContent(__layoutHelper)"
         },
         "layout-put": {
             "renderer": "./put-tag",
@@ -24,9 +24,8 @@
                 }
             },
             "import-var": {
-                "layout": "_layout"
-            },
-            "var": "out"
+                "layout": "__layoutHelper"
+            }
         },
         "layout-placeholder": {
             "renderer": "./placeholder-tag",
