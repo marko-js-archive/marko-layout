@@ -1,11 +1,13 @@
 module.exports = function render(input, context) {
     var content = {};
-    
-    input.invokeBody({
-        handlePutTag: function (putTag) {
-            content[putTag.into] = putTag;
-        }
-    });
+
+    if (input.getContent) {
+        input.getContent({
+            handlePutTag: function (putTag) {
+                content[putTag.into] = putTag;
+            }
+        });
+    }
 
     var viewModel = input['*'] || {};
     viewModel.layoutContent = content;

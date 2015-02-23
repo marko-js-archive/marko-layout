@@ -4,12 +4,12 @@ module.exports = function render(input, out) {
     if (content) {
         if (content.value) {
             out.write(content.value);
-        } else if (content.invokeBody) {
-            content.invokeBody(out);
+        } else if (content.renderBody) {
+            content.renderBody(out);
         }
     } else {
-        if (input.invokeBody) {
-            input.invokeBody(out);
+        if (input.renderBody) {
+            input.renderBody(out);
         }
     }
 };

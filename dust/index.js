@@ -34,7 +34,7 @@ exports.registerHelpers = function(dust, viewEngine) {
                 };
 
                 if (bodies.block) {
-                    result.invokeBody = function(_layout) {
+                    result.getContent = function(_layout) {
                         var newContext = context.push(_layout);
                         out.renderDustBody(bodies.block, newContext);
                     };
@@ -47,7 +47,7 @@ exports.registerHelpers = function(dust, viewEngine) {
         'layout-put': {
             buildInput: function(chunk, context, bodies, params, out) {
                 if (params.value == null && bodies.block) {
-                    params.invokeBody = function(out) {
+                    params.renderBody = function(out) {
                         out.renderDustBody(bodies.block);
                     };
                 }
@@ -59,7 +59,7 @@ exports.registerHelpers = function(dust, viewEngine) {
         'layout-placeholder': {
             buildInput: function(chunk, context, bodies, params, out) {
                 if (bodies.block) {
-                    params.invokeBody = function() {
+                    params.renderBody = function(out) {
                         out.renderDustBody(bodies.block);
                     };
                 }
