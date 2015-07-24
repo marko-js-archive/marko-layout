@@ -3,6 +3,20 @@ require('raptor-polyfill/string/startsWith');
 var raptorDust = require('raptor-dust');
 var path = require('path');
 
+var warningShown = {};
+
+function deprecated(helperName) {
+    if (warningShown[helperName]) {
+        return;
+    }
+
+    warningShown[helperName] = true;
+
+    if (console && console.warn) {
+        console.warn('The "' + helperName + '" helper for Dust has been deprecated and will be removed in the next major version.', new Error().stack);
+    }
+}
+
 exports.registerHelpers = function(dust, viewEngine) {
     viewEngine = viewEngine || require('view-engine');
 
@@ -11,6 +25,8 @@ exports.registerHelpers = function(dust, viewEngine) {
     raptorDust.registerHelpers({
         'layout-use': {
             buildInput: function(chunk, context, bodies, params, out) {
+                deprecated('layout-use');
+
                 var args = params;
                 var template = params.template;
 
@@ -46,6 +62,8 @@ exports.registerHelpers = function(dust, viewEngine) {
         },
         'layout-put': {
             buildInput: function(chunk, context, bodies, params, out) {
+                deprecated('layout-put');
+
                 if (params.value == null && bodies.block) {
                     params.renderBody = function(out) {
                         out.renderDustBody(bodies.block);
@@ -58,6 +76,8 @@ exports.registerHelpers = function(dust, viewEngine) {
         },
         'layout-placeholder': {
             buildInput: function(chunk, context, bodies, params, out) {
+                deprecated('layout-placeholder');
+
                 if (bodies.block) {
                     params.renderBody = function(out) {
                         out.renderDustBody(bodies.block);
