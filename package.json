@@ -18,7 +18,7 @@
         "Patrick Steele-Idem <pnidem@gmail.com>"
     ],
     "dependencies": {
-        "raptor-util": "^1.0.0",
+        "raptor-util": "^3.1.0",
         "raptor-dust": "^1.1.2",
         "raptor-polyfill": "^1.0.0"
     },
