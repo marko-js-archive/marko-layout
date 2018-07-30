@@ -22,7 +22,7 @@
         "raptor-polyfill": "^1.0.0"
     },
     "devDependencies": {
-        "jshint": "^2.5.0"
+        "jshint": "^2.9.6"
     },
     "license": "Apache License v2.0",
     "publishConfig": {
